@@ -1,13 +1,14 @@
 ﻿using BookStore.Api.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.Api.Features.Books.CreateBook;
 
 public class CreateBookController : ApiControllerBase
 {
-    public CreateBookController(ISender mediator) : base(mediator)
+    public CreateBookController(ISender mediator, ProblemDetailsFactory problemDetailsFactory) : base(mediator, problemDetailsFactory)
     {
     }
 
@@ -17,6 +18,6 @@ public class CreateBookController : ApiControllerBase
         [Required][FromBody] CreateBookRequest request)
     {
         var result = await _mediator.Send(request);
-        return result.ToHttpResponse();
+        return ToHttpResponse(result);
     }
 }

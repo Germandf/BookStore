@@ -18,7 +18,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddControllers(cfg =>
     {
-        cfg.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), 400));
+        cfg.Filters.Add(new ProducesResponseTypeAttribute(typeof(ValidationProblemDetails), 400));
+        cfg.Filters.Add(new ProducesResponseTypeAttribute(typeof(ProblemDetails), 409));
+        cfg.Filters.Add(new ProducesResponseTypeAttribute(typeof(ProblemDetails), 500));
         cfg.Filters.Add(new ProducesAttribute(MediaTypeNames.Application.Json));
     })
     .AddJsonOptions(cfg =>
