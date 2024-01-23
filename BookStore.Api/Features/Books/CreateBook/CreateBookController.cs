@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.Api.Features.Books.CreateBook;
 
+[Tags("Books")]
 public class CreateBookController : ApiControllerBase
 {
     public CreateBookController(ISender mediator, ProblemDetailsFactory problemDetailsFactory) : base(mediator, problemDetailsFactory)

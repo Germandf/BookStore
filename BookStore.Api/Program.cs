@@ -28,7 +28,7 @@ builder.Services
         cfg.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => options.TagActionsBy(_ => ["Api"]));
+builder.Services.AddSwaggerGen();
 builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection(nameof(RabbitMqSettings)));
 builder.Services.Configure<PostgreSqlSettings>(builder.Configuration.GetSection(nameof(PostgreSqlSettings)));
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

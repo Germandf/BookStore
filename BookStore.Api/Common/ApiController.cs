@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace BookStore.Api.Common;
 
 [ApiController]
-[Route("api/", Name = "Api")]
+[Route("api/")]
 public abstract class ApiControllerBase : ControllerBase
 {
     protected ISender _mediator;
