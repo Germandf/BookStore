@@ -4,8 +4,8 @@ using BookStore.Api.Persistence;
 
 namespace BookStore.Api.Features.Books.UpdateBookPrice;
 
-public class UpdateBookPriceRequestHandler(
-    IBookRepository bookRepository,
+public class UpdateBookPriceHandler(
+    IRepository<Book> bookRepository,
     IUnitOfWork unitOfWork)
     : IRequestHandler<UpdateBookPriceRequest, Result<Success>>
 {

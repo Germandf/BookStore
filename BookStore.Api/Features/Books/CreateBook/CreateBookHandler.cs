@@ -7,7 +7,7 @@ using MediatR;
 namespace BookStore.Api.Features.Books.CreateBook;
 
 public class CreateBookHandler(
-    IBookRepository bookRepository,
+    IRepository<Book> bookRepository,
     IUnitOfWork unitOfWork,
     IPublishEndpoint publishEndpoint)
     : IRequestHandler<CreateBookRequest, Result<CreateBookResponse>>

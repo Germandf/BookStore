@@ -5,7 +5,7 @@ using MediatR;
 namespace BookStore.Api.Features.Books.UpdateBookInfo;
 
 public class UpdateBookInfoHandler(
-    IBookRepository bookRepository,
+    IRepository<Book> bookRepository,
     IUnitOfWork unitOfWork)
     : IRequestHandler<UpdateBookInfoRequest, Result<Success>>
 {

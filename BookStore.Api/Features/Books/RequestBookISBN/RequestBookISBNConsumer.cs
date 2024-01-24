@@ -6,7 +6,7 @@ namespace BookStore.Api.Features.Books.RequestBookISBN;
 
 public class RequestBookISBNConsumer(
     IISBNService iSBNService,
-    IBookRepository bookRepository,
+    IRepository<Book> bookRepository,
     IUnitOfWork unitOfWork,
     ILogger<RequestBookISBNConsumer> logger)
     : IConsumer<BookCreatedEvent>

@@ -1,9 +1,12 @@
-﻿using FluentResults;
+﻿using BookStore.Api.Persistence;
+using FluentResults;
 using MediatR;
 
 namespace BookStore.Api.Features.Books.GetBooks;
 
-public class GetBooksHandler(IBookRepository bookRepository) : IRequestHandler<GetBooksRequest, Result<List<Book>>>
+public class GetBooksHandler(
+    IRepository<Book> bookRepository)
+    : IRequestHandler<GetBooksRequest, Result<List<Book>>>
 {
     public async Task<Result<List<Book>>> Handle(GetBooksRequest request, CancellationToken cancellationToken)
     {

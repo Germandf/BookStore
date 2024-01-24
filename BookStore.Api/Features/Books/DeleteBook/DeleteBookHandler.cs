@@ -5,7 +5,7 @@ using BookStore.Api.Persistence;
 namespace BookStore.Api.Features.Books.DeleteBook;
 
 public class DeleteBookHandler(
-    IBookRepository bookRepository,
+    IRepository<Book> bookRepository,
     IUnitOfWork unitOfWork)
     : IRequestHandler<DeleteBookRequest, Result<Success>>
 {

@@ -60,7 +60,7 @@ builder.Services.AddMassTransit(cfg =>
     });
 });
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IISBNService, ISBNService>();
 
 var app = builder.Build();
