@@ -14,7 +14,7 @@ public class UpdateBookInfoController : ApiControllerBase
     }
 
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [HttpPut("books/{id}/info", Name = nameof(UpdateBookInfo))]
+    [HttpPatch("books/{id}/info", Name = nameof(UpdateBookInfo))]
     public async Task<IActionResult> UpdateBookInfo(
         [Required][FromRoute] Guid id,
         [Required][FromBody] UpdateBookInfoRequestDto dto)

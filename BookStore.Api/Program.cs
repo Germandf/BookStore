@@ -1,3 +1,4 @@
+using BookStore.Api.Common;
 using BookStore.Api.Common.Behaviors;
 using BookStore.Api.Common.Settings;
 using BookStore.Api.Features.Books;
@@ -28,7 +29,11 @@ builder.Services
         cfg.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(ops =>
+{
+    ops.CustomSchemaIds(type => type.Name.ToString().Replace("Dto", ""));
+    ops.DocumentFilter<OrderEndpointsDocumentFilter>();
+});
 builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection(nameof(RabbitMqSettings)));
 builder.Services.Configure<PostgreSqlSettings>(builder.Configuration.GetSection(nameof(PostgreSqlSettings)));
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
