@@ -7,7 +7,7 @@ public class GetBooksHandler(IBookRepository bookRepository) : IRequestHandler<G
 {
     public async Task<Result<List<Book>>> Handle(GetBooksRequest request, CancellationToken cancellationToken)
     {
-        var books = await bookRepository.GetBooks(cancellationToken);
+        var books = await bookRepository.GetAll(cancellationToken);
 
         return books;
     }

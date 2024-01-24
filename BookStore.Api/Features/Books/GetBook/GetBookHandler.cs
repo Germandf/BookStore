@@ -7,7 +7,7 @@ public class GetBookHandler(IBookRepository bookRepository) : IRequestHandler<Ge
 {
     public async Task<Result<Book>> Handle(GetBookRequest request, CancellationToken cancellationToken)
     {
-        var book = await bookRepository.GetBook(request.Id);
+        var book = await bookRepository.Get(request.Id);
 
         if (book is null)
             return Result.Fail($"Book with id {request.Id} was not found");
