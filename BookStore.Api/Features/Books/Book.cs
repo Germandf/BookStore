@@ -1,4 +1,6 @@
-﻿namespace BookStore.Api.Features.Books;
+﻿using BookStore.Api.Features.BookCategories;
+
+namespace BookStore.Api.Features.Books;
 
 public class Book
 {
@@ -8,4 +10,5 @@ public class Book
     public string? ISBN { get; set; }
     public required decimal Price { get; set; }
     public int Stock { get; set; }
+    public List<BookCategory> Categories { get; } = [];
 }

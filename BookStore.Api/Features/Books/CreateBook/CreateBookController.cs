@@ -13,7 +13,7 @@ public class CreateBookController : ApiControllerBase
     {
     }
 
-    [ProducesResponseType(typeof(CreateBookResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
     [HttpPost("books", Name = nameof(CreateBook))]
     public async Task<IActionResult> CreateBook(
         [Required][FromBody] CreateBookRequest request)

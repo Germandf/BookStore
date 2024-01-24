@@ -10,9 +10,9 @@ public class CreateBookHandler(
     IRepository<Book> bookRepository,
     IUnitOfWork unitOfWork,
     IPublishEndpoint publishEndpoint)
-    : IRequestHandler<CreateBookRequest, Result<CreateBookResponse>>
+    : IRequestHandler<CreateBookRequest, Result<Book>>
 {
-    public async Task<Result<CreateBookResponse>> Handle(CreateBookRequest request, CancellationToken cancellationToken)
+    public async Task<Result<Book>> Handle(CreateBookRequest request, CancellationToken cancellationToken)
     {
         var book = new Book
         {
@@ -27,6 +27,6 @@ public class CreateBookHandler(
 
         await publishEndpoint.Publish(new BookCreatedEvent(book.Id, book.Title, book.Author, book.Price), cancellationToken);
 
-        return new CreateBookResponse(book.Id);
+        return book;
     }
 }

@@ -7,4 +7,4 @@ public record CreateBookRequest(
     string Title,
     string Author,
     decimal Price) 
-    : IRequest<Result<CreateBookResponse>>;
+    : IRequest<Result<Book>>;
