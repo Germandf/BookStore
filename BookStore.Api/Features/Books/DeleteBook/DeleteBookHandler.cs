@@ -11,7 +11,7 @@ public class DeleteBookHandler(
 {
     public async Task<Result<Success>> Handle(DeleteBookRequest request, CancellationToken cancellationToken)
     {
-        var book = await bookRepository.Get(request.Id);
+        var book = await bookRepository.GetById(request.Id);
 
         if (book is null)
             return Result.Fail($"Book with id {request.Id} was not found");

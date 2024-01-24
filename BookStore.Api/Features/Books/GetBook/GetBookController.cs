@@ -13,7 +13,7 @@ public class GetBookController : ApiControllerBase
     {
     }
 
-    [ProducesResponseType(typeof(List<Book>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
     [HttpGet("books/{id}", Name = nameof(GetBook))]
     public async Task<IActionResult> GetBook(
         [Required][FromRoute] Guid id)

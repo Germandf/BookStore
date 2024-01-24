@@ -14,7 +14,7 @@ public class DeleteBookController : ApiControllerBase
     {
     }
 
-    [ProducesResponseType(typeof(List<Book>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [HttpDelete("books/{id}", Name = nameof(DeleteBook))]
     public async Task<IActionResult> DeleteBook(
         [Required][FromRoute] Guid id)

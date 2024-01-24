@@ -15,7 +15,7 @@ public class RequestBookISBNConsumer(
     {
         var bookCreatedEvent = context.Message;
 
-        var book = await bookRepository.Get(bookCreatedEvent.Id);
+        var book = await bookRepository.GetById(bookCreatedEvent.Id);
 
         if (book is null)
             throw new InvalidOperationException($"Book with id {bookCreatedEvent.Id} was not found");
