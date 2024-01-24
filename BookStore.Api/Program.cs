@@ -1,7 +1,7 @@
 using BookStore.Api.Common.Behaviors;
-using BookStore.Api.Common.Models;
 using BookStore.Api.Common.Settings;
 using BookStore.Api.Features.Books;
+using BookStore.Api.Features.Books.RequestBookISBN;
 using BookStore.Api.Persistence;
 using FluentValidation;
 using MassTransit;
@@ -42,6 +42,7 @@ builder.Services.AddDbContext<BookStoreDbContext>((sp, cfg) =>
 });
 builder.Services.AddMassTransit(cfg =>
 {
+    cfg.AddConsumer<RequestBookISBNConsumer>();
     cfg.UsingRabbitMq((context, cfg) =>
     {
         var settings = context.GetRequiredService<IOptions<RabbitMqSettings>>().Value;
@@ -55,6 +56,7 @@ builder.Services.AddMassTransit(cfg =>
 });
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IISBNService, ISBNService>();
 
 var app = builder.Build();
 
