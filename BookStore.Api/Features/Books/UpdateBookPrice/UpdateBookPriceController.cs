@@ -19,7 +19,7 @@ public class UpdateBookPriceController : ApiControllerBase
         [Required][FromRoute] Guid id,
         [Required][FromBody] UpdateBookPriceRequestDto dto)
     {
-        var request = (UpdateBookPriceRequest) dto with { Id = id };
+        var request = dto.AsRequest(id);
         var result = await _mediator.Send(request);
         return ToHttpResponse(result);
     }

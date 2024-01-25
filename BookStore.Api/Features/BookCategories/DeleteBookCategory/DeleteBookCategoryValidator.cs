@@ -2,9 +2,9 @@
 
 namespace BookStore.Api.Features.BookCategories.DeleteBookCategory;
 
-public class DeleteBookCategoryRequestValidator : AbstractValidator<DeleteBookCategoryRequest>
+public class DeleteBookCategoryValidator : AbstractValidator<DeleteBookCategoryRequest>
 {
-    public DeleteBookCategoryRequestValidator()
+    public DeleteBookCategoryValidator()
     {
         RuleFor(x => x.Id).NotEmpty();
     }

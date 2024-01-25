@@ -2,9 +2,9 @@
 
 namespace BookStore.Api.Features.BookCategories.UpdateBookCategory;
 
-public class UpdateBookCategoryRequestValidator : AbstractValidator<UpdateBookCategoryRequest>
+public class UpdateBookCategoryValidator : AbstractValidator<UpdateBookCategoryRequest>
 {
-    public UpdateBookCategoryRequestValidator()
+    public UpdateBookCategoryValidator()
     {
         RuleFor(x => x.Id).NotEmpty();
 

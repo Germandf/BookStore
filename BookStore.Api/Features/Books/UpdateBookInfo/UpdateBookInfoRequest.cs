@@ -8,4 +8,4 @@ public record UpdateBookInfoRequest(
     Guid Id,
     string Title,
     string Author)
-    : UpdateBookInfoRequestDto(Title, Author), IRequest<Result<Success>>;
+    : IRequest<Result<Success>>;

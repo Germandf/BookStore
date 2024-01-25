@@ -19,7 +19,7 @@ public class UpdateBookInfoController : ApiControllerBase
         [Required][FromRoute] Guid id,
         [Required][FromBody] UpdateBookInfoRequestDto dto)
     {
-        var request = (UpdateBookInfoRequest) dto with { Id = id };
+        var request = dto.AsRequest(id);
         var result = await _mediator.Send(request);
         return ToHttpResponse(result);
     }

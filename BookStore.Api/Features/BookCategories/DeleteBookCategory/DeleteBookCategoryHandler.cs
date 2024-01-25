@@ -4,7 +4,7 @@ using BookStore.Api.Persistence;
 
 namespace BookStore.Api.Features.BookCategories.DeleteBookCategory;
 
-public class DeleteBookCategoryRequestHandler(
+public class DeleteBookCategoryHandler(
     IRepository<BookCategory> bookCategoryRepository,
     IUnitOfWork unitOfWork)
     : IRequestHandler<DeleteBookCategoryRequest, Result<Success>>

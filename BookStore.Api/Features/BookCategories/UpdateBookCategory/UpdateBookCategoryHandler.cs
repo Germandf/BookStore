@@ -4,7 +4,7 @@ using BookStore.Api.Persistence;
 
 namespace BookStore.Api.Features.BookCategories.UpdateBookCategory;
 
-public class UpdateBookCategoryRequestHandler(
+public class UpdateBookCategoryHandler(
     IRepository<BookCategory> bookCategoryRepository,
     IUnitOfWork unitOfWork)
     : IRequestHandler<UpdateBookCategoryRequest, Result<BookCategory>>
