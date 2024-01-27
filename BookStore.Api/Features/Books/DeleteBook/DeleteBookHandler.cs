@@ -1,6 +1,6 @@
-﻿using MediatR;
+﻿using BookStore.Api.Persistence;
 using FluentResults;
-using BookStore.Api.Persistence;
+using MediatR;
 
 namespace BookStore.Api.Features.Books.DeleteBook;
 

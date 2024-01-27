@@ -1,7 +1,6 @@
 using BookStore.Api.Common;
 using BookStore.Api.Common.Behaviors;
 using BookStore.Api.Common.Settings;
-using BookStore.Api.Features.Books;
 using BookStore.Api.Features.Books.RequestBookISBN;
 using BookStore.Api.Persistence;
 using FluentValidation;

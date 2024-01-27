@@ -1,24 +1,19 @@
 ﻿using BookStore.Api.Common;
 using MediatR;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.Api.Features.BookLists.CreateBookList;
 
-[Tags("BookLists")]
-public class CreateBookListController : ApiControllerBase
+[Tags(ControllerTags.BookLists)]
+public class CreateBookListController(ISender sender) : ApiControllerBase(sender)
 {
-    public CreateBookListController(ISender mediator, ProblemDetailsFactory problemDetailsFactory) : base(mediator, problemDetailsFactory)
-    {
-    }
-
     [ProducesResponseType(typeof(BookList), StatusCodes.Status200OK)]
     [HttpPost("book-lists", Name = nameof(CreateBookList))]
     public async Task<IActionResult> CreateBookList(
         [Required][FromBody] CreateBookListRequest request)
     {
-        var result = await _mediator.Send(request);
+        var result = await Mediator.Send(request);
         return ToHttpResponse(result);
     }
 }

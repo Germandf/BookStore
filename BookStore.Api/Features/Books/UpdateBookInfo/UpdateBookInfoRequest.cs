@@ -1,6 +1,5 @@
-﻿using BookStore.Api.Features.Books.UpdateBookInfo;
+﻿using FluentResults;
 using MediatR;
-using FluentResults;
 
 namespace BookStore.Api.Features.Books.UpdateBookInfo;
 

@@ -1,6 +1,6 @@
-﻿using FluentResults;
+﻿using BookStore.Api.Persistence;
+using FluentResults;
 using MediatR;
-using BookStore.Api.Persistence;
 
 namespace BookStore.Api.Features.Books.UpdateBookPrice;
 

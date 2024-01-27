@@ -11,14 +11,9 @@ namespace BookStore.Api.Common;
 [Route("api/")]
 public abstract class ApiControllerBase : ControllerBase
 {
-    protected ISender _mediator;
-    private readonly ProblemDetailsFactory _problemDetailsFactory;
+    protected readonly ISender Mediator;
 
-    protected ApiControllerBase(ISender mediator, ProblemDetailsFactory problemDetailsFactory)
-    {
-        _mediator = mediator;
-        _problemDetailsFactory = problemDetailsFactory;
-    }
+    public ApiControllerBase(ISender sender) => Mediator = sender;
 
     protected IActionResult ToHttpResponse<T>(Result<T> result)
     {
@@ -31,7 +26,7 @@ public abstract class ApiControllerBase : ControllerBase
         }
 
         var problemDetails = result.Errors.First() is ValidationError ?
-            CreateValidationProblemDetails(result.Errors) : 
+            CreateValidationProblemDetails(result.Errors) :
             CreateProblemDetails(result.Errors.First());
 
         return new ObjectResult(problemDetails)
@@ -50,9 +45,9 @@ public abstract class ApiControllerBase : ControllerBase
                 modelState.AddModelError(validationError.PropertyName, error.Message);
         }
 
-        return _problemDetailsFactory.CreateValidationProblemDetails(
+        return ProblemDetailsFactory.CreateValidationProblemDetails(
             HttpContext,
-            modelState, 
+            modelState,
             statusCode: StatusCodes.Status400BadRequest);
     }
 
@@ -62,9 +57,9 @@ public abstract class ApiControllerBase : ControllerBase
         var statusCode = exceptionError is not null ? StatusCodes.Status500InternalServerError : StatusCodes.Status409Conflict;
         var title = exceptionError is not null ? null : error.Message;
 
-        return _problemDetailsFactory.CreateProblemDetails(
-            HttpContext, 
-            statusCode: statusCode, 
+        return ProblemDetailsFactory.CreateProblemDetails(
+            HttpContext,
+            statusCode: statusCode,
             title: title);
     }
 }

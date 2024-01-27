@@ -6,5 +6,5 @@ namespace BookStore.Api.Features.Books.CreateBook;
 public record CreateBookRequest(
     string Title,
     string Author,
-    decimal Price) 
+    decimal Price)
     : IRequest<Result<Book>>;

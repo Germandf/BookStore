@@ -1,18 +1,13 @@
 ﻿using BookStore.Api.Common;
 using MediatR;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.Api.Features.BookCategories.UpdateBookCategory;
 
-[Tags("BookCategories")]
-public class UpdateBookCategoryController : ApiControllerBase
+[Tags(ControllerTags.BookCategories)]
+public class UpdateBookCategoryController(ISender sender) : ApiControllerBase(sender)
 {
-    public UpdateBookCategoryController(ISender mediator, ProblemDetailsFactory problemDetailsFactory) : base(mediator, problemDetailsFactory)
-    {
-    }
-
     [ProducesResponseType(typeof(BookCategory), StatusCodes.Status200OK)]
     [HttpPut("book-categories/{id}", Name = nameof(UpdateBookCategory))]
     public async Task<IActionResult> UpdateBookCategory(
@@ -20,7 +15,7 @@ public class UpdateBookCategoryController : ApiControllerBase
         [Required][FromBody] UpdateBookCategoryRequestDto dto)
     {
         var request = dto.AsRequest(id);
-        var result = await _mediator.Send(request);
+        var result = await Mediator.Send(request);
         return ToHttpResponse(result);
     }
 }

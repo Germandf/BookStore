@@ -1,5 +1,5 @@
-﻿using MediatR;
-using FluentResults;
+﻿using FluentResults;
+using MediatR;
 
 namespace BookStore.Api.Features.BookCategories.DeleteBookCategory;
 

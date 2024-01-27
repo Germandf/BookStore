@@ -1,5 +1,5 @@
-﻿using Swashbuckle.AspNetCore.SwaggerGen;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace BookStore.Api.Common;
 
