@@ -1,5 +1,5 @@
 ﻿using BookStore.Api.Features.BookCategories;
-using BookStore.Api.Features.BookLists;
+using BookStore.Api.Features.Readlists;
 using BookStore.Api.Features.Books;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +13,8 @@ public class BookStoreDbContext : DbContext
 
     public DbSet<Book> Books { get; set; }
     public DbSet<BookCategory> BookCategories { get; set; }
-    public DbSet<BookList> BookLists { get; set; }
+    public DbSet<Readlist> Readlists { get; set; }
+    public DbSet<ReadlistItem> ReadlistItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

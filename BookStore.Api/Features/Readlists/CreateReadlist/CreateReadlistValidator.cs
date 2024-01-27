@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace BookStore.Api.Features.BookLists.CreateBookList;
+namespace BookStore.Api.Features.Readlists.CreateReadlist;
 
-public class CreateBookListValidator : AbstractValidator<CreateBookListRequest>
+public class CreateReadlistValidator : AbstractValidator<CreateReadlistRequest>
 {
-    public CreateBookListValidator()
+    public CreateReadlistValidator()
     {
         RuleFor(x => x.Name).NotEmpty();
 

@@ -56,52 +56,6 @@ namespace BookStore.Api.Migrations
                     b.ToTable("BookCategories");
                 });
 
-            modelBuilder.Entity("BookStore.Api.Features.BookLists.BookList", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BookLists");
-                });
-
-            modelBuilder.Entity("BookStore.Api.Features.BookLists.BookListItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("BookId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("BookListId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("BookListId");
-
-                    b.ToTable("BookListItem");
-                });
-
             modelBuilder.Entity("BookStore.Api.Features.Books.Book", b =>
                 {
                     b.Property<Guid>("Id")
@@ -130,6 +84,52 @@ namespace BookStore.Api.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("BookStore.Api.Features.Readlists.Readlist", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Readlists");
+                });
+
+            modelBuilder.Entity("BookStore.Api.Features.Readlists.ReadlistItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("ReadlistId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("ReadlistId");
+
+                    b.ToTable("ReadlistItems");
+                });
+
             modelBuilder.Entity("BookBookCategory", b =>
                 {
                     b.HasOne("BookStore.Api.Features.Books.Book", null)
@@ -145,7 +145,7 @@ namespace BookStore.Api.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BookStore.Api.Features.BookLists.BookListItem", b =>
+            modelBuilder.Entity("BookStore.Api.Features.Readlists.ReadlistItem", b =>
                 {
                     b.HasOne("BookStore.Api.Features.Books.Book", "Book")
                         .WithMany()
@@ -153,16 +153,16 @@ namespace BookStore.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookStore.Api.Features.BookLists.BookList", null)
+                    b.HasOne("BookStore.Api.Features.Readlists.Readlist", null)
                         .WithMany("Items")
-                        .HasForeignKey("BookListId")
+                        .HasForeignKey("ReadlistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("BookStore.Api.Features.BookLists.BookList", b =>
+            modelBuilder.Entity("BookStore.Api.Features.Readlists.Readlist", b =>
                 {
                     b.Navigation("Items");
                 });
