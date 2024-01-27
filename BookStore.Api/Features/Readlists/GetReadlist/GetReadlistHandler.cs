@@ -1,4 +1,5 @@
-﻿using BookStore.Api.Features.Readlists;
+﻿using BookStore.Api.Common;
+using BookStore.Api.Features.Readlists;
 using BookStore.Api.Persistence;
 using FluentResults;
 using MediatR;
@@ -14,7 +15,7 @@ public class GetReadlistHandler(
         var book = await bookRepository.GetById(request.Id);
 
         if (book is null)
-            return Result.Fail($"Readlist with id {request.Id} was not found");
+            return Result.Fail(Errors.EntityNotFound<Readlist>(request.Id));
 
         return Result.Ok(book);
     }

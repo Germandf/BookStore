@@ -1,4 +1,5 @@
-﻿using BookStore.Api.Persistence;
+﻿using BookStore.Api.Common;
+using BookStore.Api.Persistence;
 using FluentResults;
 using MediatR;
 
@@ -14,7 +15,7 @@ public class UpdateBookCategoryHandler(
         var bookCategory = await bookCategoryRepository.GetById(request.Id);
 
         if (bookCategory is null)
-            return Result.Fail($"BookCategory {request.Id} not found.");
+            return Result.Fail(Errors.EntityNotFound<BookCategory>(request.Id));
 
         bookCategory.Name = request.Name;
         bookCategory.Description = request.Description;

@@ -1,4 +1,5 @@
-﻿using BookStore.Api.Persistence;
+﻿using BookStore.Api.Common;
+using BookStore.Api.Persistence;
 using FluentResults;
 using MediatR;
 
@@ -13,7 +14,7 @@ public class GetBookHandler(
         var book = await bookRepository.GetById(request.Id);
 
         if (book is null)
-            return Result.Fail($"Book with id {request.Id} was not found");
+            return Result.Fail(Errors.EntityNotFound<Book>(request.Id));
 
         return Result.Ok(book);
     }

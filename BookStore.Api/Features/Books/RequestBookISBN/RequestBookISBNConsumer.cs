@@ -1,4 +1,5 @@
-﻿using BookStore.Api.Persistence;
+﻿using BookStore.Api.Common;
+using BookStore.Api.Persistence;
 using BookStore.Events.Books;
 using MassTransit;
 
@@ -18,7 +19,7 @@ public class RequestBookISBNConsumer(
         var book = await bookRepository.GetById(bookCreatedEvent.Id);
 
         if (book is null)
-            throw new InvalidOperationException($"Book with id {bookCreatedEvent.Id} was not found");
+            throw new InvalidOperationException(Errors.EntityNotFound<Book>(bookCreatedEvent.Id));
 
         book.ISBN = await iSBNService.GetISBN(bookCreatedEvent.Title, bookCreatedEvent.Author);
 

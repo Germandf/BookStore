@@ -1,4 +1,5 @@
-﻿using BookStore.Api.Persistence;
+﻿using BookStore.Api.Common;
+using BookStore.Api.Persistence;
 using FluentResults;
 using MediatR;
 
@@ -14,10 +15,10 @@ public class UpdateBookInfoHandler(
         var book = await bookRepository.GetById(request.Id, cancellationToken);
 
         if (book is null)
-            return Result.Fail("Book not found");
+            return Result.Fail(Errors.EntityNotFound<Book>(request.Id));
 
         if (book.ISBN is not null)
-            return Result.Fail("Book info cannot be updated if the book has an ISBN");
+            return Result.Fail(Errors.BookUpdateWithISBN(book.ISBN));
 
         book.Title = request.Title;
         book.Author = request.Author;

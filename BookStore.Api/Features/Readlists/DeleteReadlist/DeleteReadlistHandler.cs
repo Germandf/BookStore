@@ -1,4 +1,5 @@
-﻿using BookStore.Api.Persistence;
+﻿using BookStore.Api.Common;
+using BookStore.Api.Persistence;
 using FluentResults;
 using MediatR;
 
@@ -14,7 +15,7 @@ public class DeleteReadlistHandler(
         var Readlist = await ReadlistRepository.GetById(request.Id);
 
         if (Readlist is null)
-            return Result.Fail($"Readlist {request.Id} not found.");
+            return Result.Fail(Errors.EntityNotFound<Readlist>(request.Id));
 
         ReadlistRepository.Remove(Readlist);
 

@@ -1,4 +1,5 @@
-﻿using BookStore.Api.Persistence;
+﻿using BookStore.Api.Common;
+using BookStore.Api.Persistence;
 using FluentResults;
 using MediatR;
 
@@ -14,10 +15,10 @@ public class UpdateBookPriceHandler(
         var book = await bookRepository.GetById(request.Id);
 
         if (book is null)
-            return Result.Fail("Book not found");
+            return Result.Fail(Errors.EntityNotFound<Book>(request.Id));
 
-        if (book.Price > request.Price)
-            return Result.Fail("New price cannot be lower than the current price");
+        if (request.Price < book.Price)
+            return Result.Fail(Errors.NewPriceBelowCurrent(request.Price, book.Price));
 
         book.Price = request.Price;
 
